@@ -88,26 +88,26 @@ API — верхнеуровневые ресурсы и операции
   - PUT `/categories/{id}` (admin)
   - DELETE `/categories/{id}` (admin)
 
-/ads:
+- /ads:
   - GET `/ads`
-  - POST `/ads `
+  - POST `/ads`
   - GET `/ads/{id}`
   - PUT `/ads/{id}`
   - DELETE `/ads/{id}`
   - POST `/ads/{id}/media`
   - GET `/ads/{id}/media`
 
-/media:
+- /media:
   - DELETE `/media/{id}`
 
-/conversations:
+- /conversations:
   - GET `/conversations`
   - POST `/conversations`
   - GET `/conversations/{id}`
   - GET `/conversations/{id}/messages`
   - POST `/conversations/{id}/messages`
 
-/reports:
+- /reports:
   - POST `/reports`
   - GET `/reports`
   - GET `/reports/{id}`
@@ -168,7 +168,7 @@ Ads
 - POST `/ads` — создание объявления (payload: {title,description,price,categoryId,location?})
 - GET `/ads/{id}` — детали объявления
 - PUT `/ads/{id}` — Admin, Moderator или Author
-- DELETE `/ads/{id} `— Admin, Moderator или Author
+- DELETE `/ads/{id}`— Admin, Moderator или Author
 - POST `/ads/{id}/media` — загрузка медиа (изображения/видео)
 - GET `/ads/{id}/media` — список медиа для объявления
 
