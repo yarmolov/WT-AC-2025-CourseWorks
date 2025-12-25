@@ -1,52 +1,51 @@
-# Объявки «Бери, пока горячее»
+# Ads API (Coursework)
 
-Курсовой проект по дисциплине «Веб-технологии»  
-**Вариант 8**
+This is a Flask-based API for the coursework "Ad board" (Variant 8).
 
-**Питч:** от велосипеда до учебника — всё тут.
+Quick start:
 
-## Технологический стек
+- Create virtualenv: `python -m venv .venv` and `source .venv/Scripts/activate` (Windows)
+- Install deps: `pip install -r requirements.txt`
+- Copy `.env.example` to `.env` and adjust if necessary
+- Initialize DB & migrations:
+  - `flask db init` (first time)
+  - `flask db migrate -m "Initial"`
+  - `flask db upgrade`
+- Run: `python run.py`
 
-- **Backend:** Python + Flask
-- **ORM:** Flask-SQLAlchemy
-- **Аутентификация:** JWT (Flask-JWT-Extended) или Flask-Login
-- **База данных:** SQLite (для разработки) / PostgreSQL (для продакшена)
-- **Миграции:** Flask-Migrate (Alembic)
-- **Frontend:** на выбор студента (React/Vue/Svelte, либо чистый HTML + JS + Bootstrap/Tailwind)
-- **Графики:** Chart.js (или аналог)
+Endpoints:
+- `GET /` health
+- OpenAPI docs: `/docs`
 
-## MVP — обязательные требования
+How to run:
+- Create virtualenv: `python -m venv .venv` and activate: `.\.venv\Scripts\activate` (Windows)
+- Install: `pip install -r requirements.txt`
+- Initialize DB and seed demo data:
+  - `python scripts/init_db.py`
+  - `python scripts/seed_demo_data.py`
+- Run: `python run.py`
 
-### Объявления, категории, поиск, чаты, модерация
+Tests:
+- Run `pytest` from `backend/`
 
-- Регистрация и вход (email + пароль).
-- Защита всех API-эндпоинтов (только авторизованные пользователи работают со своими данными).
-- Один пользователь — один аккаунт.
+Acceptance criteria (MVP):
+- User can create an Ad and include required fields ✅
+- User can upload images for their Ad ✅
+- User can open Ad and start a conversation (chat) ✅
+- User can submit a Report for an Ad ✅
+- Moderator/Admin can change Report status and block Ad ✅
+- Regular users cannot edit or delete others' Ads ✅
 
-### Основные сущности
+Notes:
+- API follows response format: `{status: "ok"|"error", data?, error?}`
+- Pagination: `limit` and `offset` supported on list endpoints
+- Auth: `Authorization: Bearer <accessToken>`
 
-- **User** (Пользователь)
-- **Category** (Категории)
-- **Chat** (Чат)
+Planned extras:
+- Postman collection / small UI (optional)
+- WebSocket notifications (bonus)
 
-### Frontend (клиентская часть)
-
-- Страницы входа/регистрации.
-- Карточки объявлений: список всех имеющихся объявлений, кнопка добавления новых объявлений.
-- Чаты: общение между пользователями.
-- Адаптивный дизайн, базовая доступность (a11y).
-
-### Нефункциональные требования
-
-- Логирование запросов и ошибок.
-
-## Критерии приёмки MVP
-
-Демонстрация должна показать:
-
-1. Регистрацию и вход.
-2. Создание объявлений.
-3. Добавление картинок.
-4. Список актуальных объявлений.
-5. Работу чатов.
-6. Панель администрации.
+Frontend:
+- Basic server-rendered UI with Jinja2 templates and Bootstrap under `app/templates` and `app/static`.
+- Pages: home (ads list), ad detail, create ad, login/register, conversations, reports, admin.
+- Client-side JS in `/static/js/app.js` handles auth and API requests using JWT stored in localStorage.
